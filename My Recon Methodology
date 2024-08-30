@@ -1,1 +1,35 @@
-My First target is - Setu.co VDP
+.My First Target is - Setu.co VDP
+
+httpx -l subdomains.txt >> active_subdomains.txt 
+
+httpx --status-code --title -l subdomains.txt > active_subdomains.txt
+
+
+.For My recon process I used Subfinder, Sublist3r for Subdomain enumaration
+
+
+
+```bash
+
+subfinder -d setu.co >> subdomains.txt
+
+python /usr/local/bin/Sublist3r/sublist3r.py -d setu.co >> subs2.txt
+
+```
+ 
+
+.Now run assetfinder
+
+```bash
+
+assetfinder --subs-only setu.co | tee -a assetfinder.txt
+```
+
+
+.Now merge all these files and save it in a final_subdomains.txt
+
+
+```bash
+
+cat subfinder.txt sublist3r.txt assetfinder.txt | sort -u | tee -a final_subdomains.txt
+
