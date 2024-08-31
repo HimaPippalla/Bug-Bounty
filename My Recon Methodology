@@ -1,11 +1,17 @@
-.My First Target is - Setu.co VDP
+# My First Target is - Setu.co VDP
 
-httpx -l subdomains.txt >> active_subdomains.txt 
+**Date:** 31 August 2024
 
-httpx --status-code --title -l subdomains.txt > active_subdomains.txt
+**Author:** P.Hima Bindu
 
 
-.For My recon process I used Subfinder, Sublist3r for Subdomain enumaration
+<!-- httpx -l subdomains.txt >> active_subdomains.txt 
+
+httpx --status-code --title -l subdomains.txt > active_subdomains.txt -->
+
+
+- For My recon process I used Subfinder, Sublist3r and assetfinder for Subdomain enumaration 
+  - First run subfinder and sublister by saving the results in a separate text files.
 
 
 
@@ -14,22 +20,24 @@ httpx --status-code --title -l subdomains.txt > active_subdomains.txt
 subfinder -d setu.co >> subdomains.txt
 
 python /usr/local/bin/Sublist3r/sublist3r.py -d setu.co >> subs2.txt
-
-```
  
 
-.Now run assetfinder
+## Now run **assetfinder**
 
 ```bash
 
 assetfinder --subs-only setu.co | tee -a assetfinder.txt
-```
 
 
-.Now merge all these files and save it in a final_subdomains.txt
-
+## Now merge all these files and save it in a final_subdomains.txt
 
 ```bash
 
 cat subfinder.txt sublist3r.txt assetfinder.txt | sort -u | tee -a final_subdomains.txt
 
+
+## Use **httpx** for http probing - live host discovery
+
+```bash
+
+cat final_subdomains.txt | httpx -sc -ip -server -title -p 80,443,8080,3000 | tee -a live_subs.txt
