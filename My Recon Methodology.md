@@ -25,21 +25,27 @@ subfinder -d setu.co >> subdomains.txt
 
 python /usr/local/bin/Sublist3r/sublist3r.py -d setu.co >> subs2.txt
  
+```
 
 ## Now run **assetfinder**
 
+```bash
 
 assetfinder --subs-only setu.co | tee -a assetfinder.txt
 
+```
 
 ## Now merge all these files and save it in a final_subdomains.txt
 
+```bash
 
 cat subfinder.txt sublist3r.txt assetfinder.txt | sort -u | tee -a final_subdomains.txt
 
+```
 
 ## Use **httpx** for http probing - live host discovery
 
+```bash
 
 cat final_subdomains.txt | httpx -sc -ip -server -title -p 80,443,8080,3000 | tee -a live_subs.txt
 
