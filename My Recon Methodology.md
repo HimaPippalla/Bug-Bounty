@@ -48,4 +48,11 @@ cat subfinder.txt sublist3r.txt assetfinder.txt | sort -u | tee -a final_subdoma
 ```bash
 
 cat final_subdomains.txt | httpx -sc -ip -server -title -p 80,443,8080,3000 | tee -a live_subs.txt
+```
+
+### OR
+
+```bash
+
+httpx -l final_subdomains.txt -sc -ip -title -p 80,443,8080,3000 | tee -a live_subs.txt 
 
