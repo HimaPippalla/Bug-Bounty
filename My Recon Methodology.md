@@ -10,9 +10,9 @@
 httpx --status-code --title -l subdomains.txt > active_subdomains.txt -->
 
 ## 
-- For My recon process I used Subfinder, Sublist3r and assetfinder for Subdomain enumaration 
+- For My recon process I used Subfinder, Sublist3r, assetfinder and amass for Subdomain enumaration 
   - First run subfinder and sublister by saving the results in a separate text files.
-  - run assetfinder and also save the ouput to a text file
+  - run assetfinder and amass also save the ouput to the text files
   - Merge all the files in a final_subdomains.txt file
   - Use httpx for filtering live hosts
 
@@ -21,9 +21,9 @@ httpx --status-code --title -l subdomains.txt > active_subdomains.txt -->
 
 ```bash
 
-subfinder -d setu.co >> subdomains.txt
+subfinder -d example.com >> subdomains.txt
 
-python /usr/local/bin/Sublist3r/sublist3r.py -d setu.co >> subs2.txt
+python /usr/local/bin/Sublist3r/sublist3r.py -d example.com >> subs2.txt
  
 ```
 
@@ -31,15 +31,23 @@ python /usr/local/bin/Sublist3r/sublist3r.py -d setu.co >> subs2.txt
 
 ```bash
 
-assetfinder --subs-only setu.co | tee -a assetfinder.txt
+assetfinder --subs-only example.com | tee -a assetfinder.txt
 
 ```
+
+### Now run **amass**
+
+```bash
+
+amass enum -passive -d example.com
+```
+
 
 ### Now merge all these files and save it in a final_subdomains.txt
 
 ```bash
 
-cat subfinder.txt sublist3r.txt assetfinder.txt | sort -u | tee -a final_subdomains.txt
+cat subfinder.txt sublist3r.txt assetfinder.txt amass.txt | sort -u | tee -a final_subdomains.txt
 
 ```
 
