@@ -39,7 +39,7 @@ assetfinder --subs-only example.com | tee -a assetfinder.txt
 
 ```bash
 
-amass enum -passive -d example.com
+amass enum -passive -d example.com | tee -a amass.txt
 ```
 
 
