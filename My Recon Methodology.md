@@ -17,7 +17,7 @@ httpx --status-code --title -l subdomains.txt > active_subdomains.txt -->
   - Use httpx for filtering live hosts
 
 
-## Run Subfinder & Sublist3r
+### Run Subfinder & Sublist3r
 
 ```bash
 
@@ -27,7 +27,7 @@ python /usr/local/bin/Sublist3r/sublist3r.py -d setu.co >> subs2.txt
  
 ```
 
-## Now run **assetfinder**
+### Now run **assetfinder**
 
 ```bash
 
@@ -35,7 +35,7 @@ assetfinder --subs-only setu.co | tee -a assetfinder.txt
 
 ```
 
-## Now merge all these files and save it in a final_subdomains.txt
+### Now merge all these files and save it in a final_subdomains.txt
 
 ```bash
 
@@ -43,7 +43,7 @@ cat subfinder.txt sublist3r.txt assetfinder.txt | sort -u | tee -a final_subdoma
 
 ```
 
-## Use **httpx** for http probing - live host discovery
+### Use **httpx** for http probing - live host discovery
 
 ```bash
 
