@@ -17,7 +17,7 @@ httpx --status-code --title -l subdomains.txt > active_subdomains.txt -->
   - Use httpx for filtering live hosts
 
 
-
+## Run Subfinder & Sublist3r
 
 ```bash
 
